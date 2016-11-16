@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<bean id="beanContact1" class="domain.Contact" scope="singleton">
+		<property name="nom" value="El Attar"></property>
+		<property name="prenom" value="Leyla Bean"></property>
+		<property name="email" value="elattar@leyla"></property>
+		<property name="adresse" ref="beanAdresse1"></property>
+		<property name="tels" ref="beanTelephone1"></property>
+		<property name="contactGroupes" ref="beanGroupe1"></property>
+	</bean>
+	<bean id="beanAdresse1" class="domain.Adresse">
+		<property name="codePostal" value="75"></property>
+		<property name="pays" value="France"></property>
+		<property name="rue" value="10 rue des bles"></property>
+		<property name="ville" value="Paris"></property>
+	</bean>
+	<bean id="beanTelephone1" class="domain.Telephone">
+		<property name="telBureau" value="04"></property>
+		<property name="telMaison" value="01"></property>
+		<property name="telMobile" value="06"></property>
+		<property name="contact" ref="beanContact1"></property>
+	</bean>
+	<bean id="beanGroupe1" class="domain.ContactGroupe">
+		<property name="nomGroupe" value="Amis"></property>
+		<property name="contacts" ref="beanContact1"></property>
+	</bean>
+	
+	<bean id="beanContact2" class="domain.Contact" scope="singleton">
+		<property name="nom" value="Menguy"></property>
+		<property name="prenom" value="Philippe"></property>
+		<property name="email" value="menguy@philippe"></property>
+		<property name="adresse" ref="beanAdresse2"></property>
+		<property name="tels" ref="beanTelephone2"></property>
+		<property name="contactGroupes" ref="beanGroupe2"></property>
+	</bean>
+	<bean id="beanAdresse2" class="domain.Adresse">
+		<property name="codePostal" value="92"></property>
+		<property name="pays" value="France"></property>
+		<property name="rue" value="Rue Camille Desmoulins"></property>
+		<property name="ville" value="Issy"></property>
+	</bean>
+	<bean id="beanTelephone2" class="domain.Telephone">
+		<property name="telBureau" value="0478"></property>
+		<property name="telMaison" value="0146"></property>
+		<property name="telMobile" value="0627"></property>
+		<property name="contact" ref="beanContact2"></property>
+	</bean>
+	<bean id="beanGroupe2" class="domain.ContactGroupe">
+		<property name="nomGroupe" value="Amis"></property>
+		<property name="contacts" ref="beanContact2"></property>
+	</bean>
+	
+	<bean id="beanContactBean" class="domain.ContactBean">
+		<constructor-arg><ref bean="beanContact1"/></constructor-arg>
+		<constructor-arg><ref bean="beanAdresse1"/></constructor-arg>
+		<constructor-arg><ref bean="beanTelephone1"/></constructor-arg>
+		<constructor-arg><ref bean="beanGroupe1"/></constructor-arg>
+		<constructor-arg type="int"><value>1</value></constructor-arg>
+	</bean>
+</beans>

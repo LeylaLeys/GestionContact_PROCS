@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+	<class name="Contact" table="CONTACT">
+		<id name="idContact" type="long" column="ID_CONTACT">
+			<generator class="increment" /></id>
+			
+		<version name="vers" column="version" access="field"></version>
+
+		<property name="nom" not-null="true" insert="true" update="true">
+			<column name="nom" /><type name="string" />
+		</property>
+		
+		<property name="prenom" not-null="true" insert="true" update="true">
+			<column name="prenom" /><type name="string" />
+		</property>
+
+		<property name="email" not-null="true" insert="true" update="true"
+			unique="true"><column name="email" /><type name="string" />
+		</property>
+
+		<many-to-one name="adresse" column="adresse" class="Adresse"
+			unique="true" not-null="true" />
+
+		<set name="contactGroupes" table="GROUPE_CONTACT">
+			<key column="CONTACT_ID"/>
+			<many-to-many class="ContactGroupe" column="idGroupe"/>
+		</set>
+
+		<set name="tels" table="TELEPHONE" inverse="true">
+			<key column="idTel" not-null="true"/>
+			<one-to-many class="Telephone"/>
+		</set>
+
+		<joined-subclass name="Entreprise" table="ENTREPRISE">
+			<key column="CONTACT_ID"/>
+			<property name="numSiret" column="numSiret"/>
+		</joined-subclass>
+
+	</class>
+</hibernate-mapping>

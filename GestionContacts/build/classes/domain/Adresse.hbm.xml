@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+  <class name="Adresse" table="ADRESSE">
+  	 <id name="idAdresse" type="long" column="idAdresse" >
+   		<generator class="increment"/>
+  	 </id>
+	<property name="rue" not-null="true" insert="true" update="true">
+     	<column name="rue" />
+     	<type name="string" />
+    </property>
+    
+    <property name="ville" not-null="true" insert="true">
+     	<column name="ville" />
+     	<type name="string" />
+    </property>
+    
+    <property name="codePostal" not-null="true" insert="true" update="true">
+     	<column name="codePostal" />
+     	<type name="string" />
+    </property>
+    
+        <property name="pays" not-null="true" insert="true" update="true">
+     	<column name="pays" />
+     	<type name="string" />
+    </property>
+    
+  </class>
+</hibernate-mapping>

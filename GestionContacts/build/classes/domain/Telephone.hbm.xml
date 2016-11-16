@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="domain">
+  <class name="Telephone" table="TELEPHONE">
+  	 <id name="idTel" type="long" column="idTel" >
+   		<generator class="increment"/>
+  	 </id>
+	<property name="telMaison">
+     	<column name="telMaison"/>
+     	<type name="string"/>
+    </property>
+    
+    <property name="telMobile">
+     	<column name="telMobile"/>
+     	<type name="string"/>
+    </property>
+    
+    <property name="telBureau">
+     	<column name="telBureau"/>
+     	<type name="string"/>
+    </property>
+    
+    <many-to-one name="contact" column="CONTACT_ID" class="Contact" not-null ="true"/>
+    
+  </class>
+</hibernate-mapping>
